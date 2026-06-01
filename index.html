@@ -375,18 +375,23 @@ return currentCategory === "all" || item.category === currentCategory;
 
 // render
 function render(list){
-const gallery=document.getElementById("gallery");
-gallery.innerHTML="";
+  const gallery = document.getElementById("gallery");
+  gallery.innerHTML = "";
 
-list.forEach((item,i)=>{
-gallery.innerHTML+=`
-<div class="card" onclick='openModal(${JSON.stringify(item)})'
-<img src="${item.image}">
-<div class="card-title">${item.title}</div>
-</div>`;
-});
+  list.forEach((item, i) => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <img src="${item.image}">
+      <div class="card-title">${item.title}</div>
+    `;
+
+    card.onclick = () => openModal(item);
+
+    gallery.appendChild(card);
+  });
 }
-
 render(data);
 
 // modal
