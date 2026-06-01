@@ -361,10 +361,10 @@ document.getElementById("search").addEventListener("input", function(){
   render(getFiltered());
 });
 
-window.onload = () => {
+document.addEventListener("DOMContentLoaded", () => {
   render(data);
-};
-
+});
+  
 </script>
 
 </body>
