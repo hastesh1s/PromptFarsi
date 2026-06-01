@@ -133,7 +133,7 @@ prompt:`Create a minimalist double exposure travel poster for me. The main subje
 {
  id: "prompt_driverا",
   image: "https://image.lexica.art/full_jpg/49e72747-4ad2-4cbd-a022-1b6b822100d2",
-  title: "آکتابخونه",
+  title: "کتابخونه",
   category: "image",
   prompt: "a 25-year-old Korean woman selfie, front facing camera, Lighting is soft and natural. If background is visible, it’s a clean, modern apartment interior. The clothing color is clearly visible and distinct, adding a hint of color contrast,"
 },
