@@ -123,4 +123,18 @@ prompt:`Create a minimalist double exposure travel poster for me. The main subje
   category: "article",
   prompt: "..."
 },
+{
+ id: "اprompt_realy",
+  image: "https://image.lexica.art/full_jpg/029b0442-a502-4ca2-9529-2bbbc58f3e24",
+  title: "واقع گرایانه2 ",
+  category: "image",
+  prompt: "A low-angle, wide-angle analogue photograph of a woman posing playfully on a sunlit pier, against a clear blue sky. The photo is taken at an angle. The sun is behind the model creating a glow. She has dark brown hair let loose, she looks cool and baeutful. She's wearing a simple, white t shirt, denim cut-off shorts cut roughly with a few threads, and trainers and socks. The image has a raw, unpolished look — shot on 35mm film with a grungy, analogue aesthetic, with flash. No digital retouching, with natural lighting and imperfections intact, there are a few flecks of grain and scratches on the pic in a natural way. The photo feels spontaneous, carefree, and candid, capturing a nostalgic 90s summer vibe. Harsh sunlight creates subtle lens flare and dramatic shadows. The model wears minimal accessories, emphasising a natural, real-life look. Background includes a white wooden fence and distant hills by the ocean."
+},
+{
+ id: "prompt_driverا",
+  image: "https://image.lexica.art/full_jpg/49e72747-4ad2-4cbd-a022-1b6b822100d2",
+  title: "آکتابخونه",
+  category: "image",
+  prompt: "a 25-year-old Korean woman selfie, front facing camera, Lighting is soft and natural. If background is visible, it’s a clean, modern apartment interior. The clothing color is clearly visible and distinct, adding a hint of color contrast,"
+},
 ];
