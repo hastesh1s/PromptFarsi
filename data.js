@@ -108,74 +108,12 @@ prompt:`Create a minimalist double exposure travel poster for me. The main subje
   title: "عکس در پارتی",
   category: "image",
   prompt: "A raw amateur phone photo shot on iphone photos with no filters, an everyday snapshot, IMG_3032.HEIC. in 2021 The photo was taken hastily and quickly on an iphone, iconic iphone lighting. Far shot of Lainey, cute girl with makeup, 18 year old. British girl, 1a blonde hair. tanned, navy blue tube top, white tight shorts, sandals. unique lively expressions, smile, she is sitting in a pub in suburban london, people, built in 2000s. It is summer, humid, night at 10PM, ceiling lights creating harsh lighting and harsh shadows, overexposed photo. There's no filters, no captions. very raw photo shot on iphone 16. The photo looks like an everyday photo shot on an iphone. Everyday mediocre image shot on iphone, mediocre quality, shaky, low quality. UGC, IMG_3032.HEIC, raw style super amateur photo 2021, ugc, shot with an iPhone 16, no bokeh, no post-processing."
-}
+},
+{
   id: "varzesh_valibal",
   image: "https://i.imgur.com/5Fgy1GR.png",
   title: "ورزشی والیبال",
   category: "image",
   prompt: "hot woman from Japan as volleyball player, serious look while playing a game , wearing white base Volleyball uniform , smile fac"
-}
- id: "prompt writing guideا",
-  image: "https://www.karlancer.com/blog/wp-content/uploads/2024/11/%D9%86%DA%A9%D8%A7%D8%AA-%D9%BE%D8%B1%D8%A7%D9%85%D9%BE%D8%AA-%D9%86%D9%88%DB%8C%D8%B3%DB%8C-1.png",
-  title: "آموزش پرامپت نویسی",
-  category: "article",
-  prompt: "مقاله: آموزش پرامپت‌نویسی (Prompt Writing) به زبان ساده و کاربردی
-
-پرامپت‌نویسی یعنی اینکه بتوانیم درست و دقیق به هوش مصنوعی بگوییم چه چیزی می‌خواهیم. کیفیت خروجی هوش مصنوعی کاملاً به کیفیت پرامپت ما بستگی دارد؛ هرچه بهتر بنویسیم، نتیجه دقیق‌تر و حرفه‌ای‌تر می‌گیریم.
-
-پرامپت چیست؟
-
-پرامپت در واقع همان دستور یا سوالی است که به هوش مصنوعی می‌دهیم. این دستور می‌تواند ساده باشد مثل:
-«یک متن درباره ورزش بنویس»
-یا حرفه‌ای‌تر:
-«یک متن ۵ پاراگرافی، رسمی، درباره فواید ورزش برای نوجوانان بنویس»
-
-اصول مهم پرامپت‌نویسی
-1. وضوح (Clarity)
-
-هوش مصنوعی ذهن‌خوان نیست. باید دقیق بگویی چه می‌خواهی.
-
-❌ بد: «یه متن بده»
-✔️ خوب: «یک متن کوتاه درباره مزایای مطالعه روزانه بنویس»
-
-2. دادن جزئیات
-
-هرچه جزئیات بیشتر باشد، نتیجه بهتر است:
-
-طول متن (کوتاه، متوسط، بلند)
-سبک (رسمی، دوستانه، آموزشی)
-هدف (یادگیری، تبلیغ، سرگرمی)
-3. تعیین نقش (Role Prompting)
-
-می‌توانی به هوش مصنوعی نقش بدهی:
-
-«مثل یک معلم توضیح بده»
-«مثل یک نویسنده حرفه‌ای بنویس»
-«مثل یک بلاگر نوجوان بنویس»
-4. استفاده از مثال
-
-اگر سبک خاصی می‌خواهی، نمونه بده:
-
-«مثل این سبک بنویس: ساده، کوتاه و قابل فهم»
-
-5. بهبود مرحله‌ای
-
-اگر جواب خوب نبود، به جای شروع دوباره بگو:
-
-«ساده‌ترش کن»
-«جزئیات بیشتر بده»
-«مثال اضافه کن»
-نمونه یک پرامپت حرفه‌ای
-
-«یک مقاله ۵۰۰ کلمه‌ای، با لحن ساده و آموزشی، درباره اهمیت یادگیری زبان انگلیسی برای نوجوانان بنویس. متن باید شامل مقدمه، بدنه و نتیجه‌گیری باشد.»
-
-اشتباهات رایج در پرامپت‌نویسی
-خیلی کلی نوشتن
-ندادن هدف مشخص
-نگفتن سبک متن
-انتظار نتیجه کامل در اولین تلاش
-نتیجه‌گیری
-
-پرامپت‌نویسی یک مهارت مهم در کار با هوش مصنوعی است. هرچه این مهارت را بهتر یاد بگیری، می‌توانی خروجی‌های دقیق‌تر، خلاقانه‌تر و حرفه‌ای‌تری بگیری. این مهارت مثل یاد گرفتن زبان جدید است؛ با تمرین بهتر می‌شود."
-}
+},
 ];
