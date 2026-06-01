@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <title>پرامپت</title>
-</head>
-<body>
-
-<h1 id="title"></h1>
-<img id="image" style="max-width:100%">
-<pre id="prompt"></pre>
-
 <script src="data.js"></script>
+
+<div id="content"></div>
 
 <script>
 const params = new URLSearchParams(window.location.search);
@@ -18,12 +8,13 @@ const id = params.get("id");
 
 const item = data.find(x => x.id === id);
 
-document.title = item.title;
-
-document.getElementById("title").innerText = item.title;
-document.getElementById("image").src = item.image;
-document.getElementById("prompt").innerText = item.prompt;
+if (!item) {
+  document.getElementById("content").innerHTML = "یافت نشد";
+} else {
+  document.getElementById("content").innerHTML = `
+    <h1>${item.title}</h1>
+    <img src="${item.image}" style="max-width:100%">
+    <pre style="white-space:pre-wrap">${item.prompt}</pre>
+  `;
+}
 </script>
-
-</body>
-</html>
