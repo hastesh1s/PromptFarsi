@@ -15,11 +15,13 @@
 <meta property="og:title" content="پرامپت فارسی | مرجع هوش مصنوعی">
 <meta property="og:description" content="آرشیو حرفه‌ای پرامپت‌های فارسی برای ابزارهای هوش مصنوعی">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://i.imgur.com/R6qSBHK.jpeg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="favicon.png">
+
 <style>
 
 *{
@@ -35,7 +37,6 @@ color:white;
 padding:20px;
 }
 
-/* HEADER */
 .header{
 text-align:center;
 margin-bottom:20px;
@@ -53,7 +54,6 @@ background:linear-gradient(135deg,#fff,#aaa);
 color:#aaa;
 }
 
-/* CATEGORIES */
 .categories{
 display:flex;
 gap:10px;
@@ -69,13 +69,18 @@ border-radius:10px;
 background:#222;
 color:white;
 cursor:pointer;
+transition:0.2s;
 }
 
 .categories button:hover{
 background:#333;
 }
 
-/* SEARCH */
+.categories button.active{
+background:#4F6EF7;
+color:white;
+}
+
 .search-box{
 max-width:500px;
 margin:10px auto 20px;
@@ -90,7 +95,6 @@ background:#111;
 color:white;
 }
 
-/* GRID */
 .gallery{
 display:grid;
 grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
@@ -120,7 +124,6 @@ object-fit:cover;
 padding:10px;
 }
 
-/* MODAL */
 .modal{
 position:fixed;
 inset:0;
@@ -130,6 +133,10 @@ justify-content:center;
 align-items:center;
 padding:20px;
 z-index:999;
+}
+
+.modal.open{
+display:flex;
 }
 
 .modal-content{
@@ -197,11 +204,10 @@ cursor:pointer;
 <p>مرجع پرامپت هوش مصنوعی</p>
 </div>
 
-<!-- دسته‌بندی -->
 <div class="categories">
-<button onclick="setCategory('all')">همه</button>
-<button onclick="setCategory('image')">پرامپت عکس</button>
-<button onclick="setCategory('article')">مقالات</button>
+<button class="active" onclick="setCategory('all', this)">همه</button>
+<button onclick="setCategory('image', this)">پرامپت عکس</button>
+<button onclick="setCategory('article', this)">مقالات</button>
 </div>
 
 <div class="search-box">
@@ -210,16 +216,13 @@ cursor:pointer;
 
 <div class="gallery" id="gallery"></div>
 
-<!-- MODAL -->
 <div class="modal" id="modal">
 <div class="modal-content">
-<img id="modalImage">
+<img id="modalImage" alt="">
 <div class="prompt" id="modalPrompt"></div>
-
 <div class="actions">
 <button onclick="copyPrompt()">📋 کپی</button>
 </div>
-
 <div class="close" onclick="closeModal()">بستن</div>
 </div>
 </div>
@@ -233,150 +236,92 @@ let data = [
 image:"https://i.imgur.com/R6qSBHK.jpeg",
 title:"عکس واقع‌گرایانه",
 category:"image",
-prompt:`A low-angle close-up selfie captured outdoors under strong natural sunlight
-. The subject looks directly into the camera with a candid and authentic expression. Bright sunlight creates realistic shadows across the face while preserving skin texture, pores, subtle imperfections, and natural highlights. The background contains blue sky, ocean, coastline, or open natural scenery softly visible behind the subject. Captured with a modern smartphone using a wide-angle lens. Ultra-photorealistic photography. Natural color science. Realistic skin response to sunlight. Sharp focus. Authentic environmental lighting. No beauty filters. No skin smoothing. No CGI appearance. No AI-generated artifacts. The overall mood is vibrant, energetic, spontaneous, confident, and vacation-oriented`
+prompt:`A low-angle close-up selfie captured outdoors under strong natural sunlight. The subject looks directly into the camera with a candid and authentic expression. Bright sunlight creates realistic shadows across the face while preserving skin texture, pores, subtle imperfections, and natural highlights. The background contains blue sky, ocean, coastline, or open natural scenery softly visible behind the subject. Captured with a modern smartphone using a wide-angle lens. Ultra-photorealistic photography. Natural color science. Realistic skin response to sunlight. Sharp focus. Authentic environmental lighting. No beauty filters. No skin smoothing. No CGI appearance. No AI-generated artifacts. The overall mood is vibrant, energetic, spontaneous, confident, and vacation-oriented`
 },
 {
 image:"https://i.imgur.com/zOvNCFY.jpeg",
 title:"پوستر فوتبالی",
 category:"image",
-prompt:`@PLAYER = “[Farshad Farahani]”
-@CLUB = “[Real Madrid]” @NUMBER = “[7]”
-OPTIONAL: @POSITION = “[Winger]” @HEADLINE = “[Legacy Never Ends]”
-@LEAGUE = “[UEFA Champions League]” 3:4 Aspect Ratio is a MUST!
+prompt:`@PLAYER = "[Farshad Farahani]"
+@CLUB = "[Real Madrid]" @NUMBER = "[7]"
+OPTIONAL: @POSITION = "[Winger]" @HEADLINE = "[Legacy Never Ends]"
+@LEAGUE = "[UEFA Champions League]" 3:4 Aspect Ratio is a MUST!
 
-Create an ultra-premium cinematic CLUB FOOTBALL editorial poster in vertical 3:4 aspect ratio.
-
-MAIN SUBJECT:
-A hyper-realistic stylized portrait of @PLAYER sitting on a large minimalist geometric cube displaying @NUMBER.
-
-STYLE:
-Minimal luxury editorial mixed with cinematic football illustration realism.
-
-BACKGROUND:
-Warm off-white / ivory textured paper background with subtle grain and gradients.
-
-TYPOGRAPHY:
-“@LEAGUE 2026” and headline system based on football legacy themes.
-
-LIGHTING:
-Soft cinematic studio lighting with warm highlights and realistic shadows.
-
-MOOD:
-Iconic, ambitious, timeless elite athlete mentality.`
+Create an ultra-premium cinematic CLUB FOOTBALL editorial poster in vertical 3:4 aspect ratio.`
 },
 {
 image:"https://i.imgur.com/ixKEmFB.png",
 title:"chatgpt.",
 category:"article",
-prompt:`هوش مصنوعی محاوره‌ای نسل جدید
-چکیده
-ChatGPT یک مدل زبان بزرگ (Large Language Model) است که توسط شرکت OpenAI توسعه داده شده و بر پایه معماری Transformer ساخته شده است. این مدل توانایی درک متن، تولید پاسخ‌های طبیعی، حل مسائل و کمک به آموزش و تولید محتوا را دارد.
-1. مقدمه
-با پیشرفت فناوری‌های هوش مصنوعی، مدل‌های زبانی بزرگ (LLM) به یکی از مهم‌ترین دستاوردهای این حوزه تبدیل شده‌اند. ChatGPT یکی از پیشرفته‌ترین نمونه‌های این مدل‌هاست که می‌تواند با کاربران به شکل طبیعی گفتگو کند.
-این مدل بر پایه شبکه‌های عصبی و یادگیری عمیق ساخته شده و توانایی پردازش زبان انسانی را دارد.
-2. معماری و نحوه کار
-ChatGPT بر اساس معماری Transformer ساخته شده است. این معماری از مکانیزم Attention برای درک ارتباط بین کلمات استفاده می‌کند.
-ویژگی‌های مهم:
-پردازش متنی بسیار سریع
-درک ارتباط معنایی جملات
-تولید پاسخ‌های طبیعی
-بهینه‌سازی شده برای گفتگو
-3. آموزش مدل
-ChatGPT در چند مرحله آموزش داده می‌شود:
-پیش‌آموزش (Pre-training) روی حجم زیادی از داده‌های متنی اینترنت
-تنظیم دقیق (Fine-tuning) برای بهبود عملکرد
-یادگیری تقویتی از بازخورد انسانی (RLHF)
-4. قابلیت‌ها
-پاسخ به سوالات عمومی و تخصصی
-تولید محتوا (مقاله، داستان، ایمیل و…)
-ترجمه زبان‌ها
-کمک به برنامه‌نویسی
-تحلیل و خلاصه‌سازی متن
-5. کاربردها
-آموزش و یادگیری
-تولید محتوا و بازاریابی دیجیتال
-پشتیبانی مشتری
-تحقیق و توسعه
-دستیار شخصی هوشمند
-6. مزایا
-سرعت بالا در پاسخ‌دهی
-دسترسی آسان
-قابلیت یادگیری گسترده
-کمک به افزایش بهره‌وری
-کاربرد در حوزه‌های مختلف
-7. محدودیت‌ها
-احتمال تولید اطلاعات نادرست
-عدم درک واقعی احساسات انسانی
-وابستگی به داده‌های آموزشی
-محدودیت در دانش به‌روز`
+prompt:`هوش مصنوعی محاوره‌ای نسل جدید - ChatGPT`
 },
 {
 image:"https://i.imgur.com/t4R1aCW.png",
 title:"پرتره هنری ایرانی",
 category:"image",
-prompt:`Create a minimalist double exposure travel poster for me. The main subject is a stylish Iran depicted in a clear silhouette in profile, in which it is easy to recognize the traveler based on the attached photo. The object is dressed in decent fashion for traveling around the world (simple clothes, neat style)`
+prompt:`Create a minimalist double exposure travel poster for me.`
 },
 ];
 
-// دسته‌بندی
-function setCategory(cat){
-currentCategory = cat;
-render(getFiltered());
+function setCategory(cat, btn){
+  currentCategory = cat;
+  document.querySelectorAll('.categories button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render(getFiltered());
 }
 
 function getFiltered(){
-return data.filter(item =>
-currentCategory === "all" || item.category === currentCategory
-);
+  const searchVal = document.getElementById("search").value.toLowerCase();
+  return data.filter(item =>
+    (currentCategory === "all" || item.category === currentCategory) &&
+    item.title.toLowerCase().includes(searchVal)
+  );
 }
 
 function render(list){
-const gallery = document.getElementById("gallery");
-gallery.innerHTML = "";
-
-list.forEach(item => {
-const card = document.createElement("div");
-card.className = "card";
-
-card.innerHTML = `
-<img src="${item.image}">
-<div class="card-title">${item.title}</div>
-`;
-
-card.onclick = () => openModal(item);
-
-gallery.appendChild(card);
-});
+  const gallery = document.getElementById("gallery");
+  gallery.innerHTML = "";
+  list.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <img src="${item.image}" alt="${item.title}">
+      <div class="card-title">${item.title}</div>
+    `;
+    card.onclick = () => openModal(item);
+    gallery.appendChild(card);
+  });
 }
 
 render(data);
 
 function openModal(item){
-document.getElementById("modal").style.display="flex";
-document.getElementById("modalImage").src=item.image;
-document.getElementById("modalPrompt").innerText=item.prompt;
-window.currentPrompt=item.prompt;
+  document.getElementById("modal").classList.add("open");
+  document.getElementById("modalImage").src = item.image;
+  document.getElementById("modalImage").alt = item.title;
+  document.getElementById("modalPrompt").innerText = item.prompt;
+  window.currentPrompt = item.prompt;
 }
 
 function closeModal(){
-document.getElementById("modal").style.display="none";
+  document.getElementById("modal").classList.remove("open");
 }
+
+document.getElementById("modal").addEventListener("click", function(e){
+  if(e.target === this) closeModal();
+});
+
+document.addEventListener("keydown", function(e){
+  if(e.key === "Escape") closeModal();
+});
 
 function copyPrompt(){
-navigator.clipboard.writeText(window.currentPrompt);
-alert("کپی شد");
+  navigator.clipboard.writeText(window.currentPrompt);
+  alert("کپی شد");
 }
 
-document.getElementById("search").addEventListener("input", function(e){
-let v = e.target.value.toLowerCase();
-
-let filtered = data.filter(item =>
-item.title.toLowerCase().includes(v) &&
-(currentCategory === "all" || item.category === currentCategory)
-);
-
-render(filtered);
+document.getElementById("search").addEventListener("input", function(){
+  render(getFiltered());
 });
 
 </script>
