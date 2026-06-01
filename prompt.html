@@ -1,6 +1,148 @@
-<script src="data.js"></script>
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
 
-<div id="content"></div>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt Viewer</title>
+
+<style>
+body{
+margin:0;
+font-family: Vazirmatn, sans-serif;
+background:#050505;
+color:white;
+padding:20px;
+}
+
+/* layout اصلی */
+.container{
+display:flex;
+gap:20px;
+max-width:1100px;
+margin:auto;
+align-items:flex-start;
+}
+
+/* عکس */
+.image-box{
+flex:1;
+background:#0f0f0f;
+border:1px solid #222;
+border-radius:16px;
+overflow:hidden;
+}
+
+.image-box img{
+width:100%;
+display:block;
+}
+
+/* پرامپت */
+.prompt-box{
+flex:1;
+background:#0f0f0f;
+border:1px solid #222;
+border-radius:16px;
+display:flex;
+flex-direction:column;
+max-height:80vh;
+}
+
+.prompt-text{
+padding:15px;
+white-space:pre-wrap;
+overflow-y:auto;
+flex:1;
+line-height:1.7;
+font-size:14px;
+}
+
+/* دکمه‌ها */
+.actions{
+display:flex;
+gap:10px;
+padding:10px;
+border-top:1px solid #222;
+background:#0f0f0f;
+}
+
+button{
+flex:1;
+padding:10px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+background:#222;
+color:white;
+transition:0.2s;
+}
+
+button:hover{
+background:#333;
+}
+
+/* header */
+.top-bar{
+max-width:1100px;
+margin:auto;
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.back-btn{
+background:#4F6EF7;
+padding:10px 14px;
+border-radius:10px;
+cursor:pointer;
+border:none;
+color:white;
+}
+
+.back-btn:hover{
+opacity:0.9;
+}
+
+/* موبایل */
+@media(max-width:900px){
+.container{
+flex-direction:column;
+}
+.prompt-box{
+max-height:none;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="top-bar">
+  <h2 id="title">Loading...</h2>
+  <button class="back-btn" onclick="window.location.href='index.html'">⬅ برگشت</button>
+</div>
+
+<div class="container">
+
+  <!-- عکس -->
+  <div class="image-box">
+    <img id="img" src="" alt="">
+  </div>
+
+  <!-- پرامپت -->
+  <div class="prompt-box">
+    <div class="prompt-text" id="prompt"></div>
+
+    <div class="actions">
+      <button onclick="copyPrompt()">📋 کپی پرامپت</button>
+    </div>
+  </div>
+
+</div>
+
+<script src="data.js"></script>
 
 <script>
 const params = new URLSearchParams(window.location.search);
@@ -8,13 +150,22 @@ const id = params.get("id");
 
 const item = data.find(x => x.id === id);
 
-if (!item) {
-  document.getElementById("content").innerHTML = "یافت نشد";
-} else {
-  document.getElementById("content").innerHTML = `
-    <h1>${item.title}</h1>
-    <img src="${item.image}" style="max-width:100%">
-    <pre style="white-space:pre-wrap">${item.prompt}</pre>
-  `;
+if(!item){
+  document.body.innerHTML = "<h2 style='text-align:center'>موردی پیدا نشد</h2>";
+}else{
+
+  document.getElementById("title").innerText = item.title;
+  document.getElementById("img").src = item.image;
+  document.getElementById("prompt").innerText = item.prompt;
+
+  window.currentPrompt = item.prompt;
+}
+
+function copyPrompt(){
+  navigator.clipboard.writeText(window.currentPrompt);
+  alert("کپی شد ✅");
 }
 </script>
+
+</body>
+</html>
