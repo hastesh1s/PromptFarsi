@@ -380,7 +380,7 @@ gallery.innerHTML="";
 
 list.forEach((item,i)=>{
 gallery.innerHTML+=`
-<div class="card" onclick="openModal(${i})">
+<div class="card" onclick='openModal(${JSON.stringify(item)})'
 <img src="${item.image}">
 <div class="card-title">${item.title}</div>
 </div>`;
