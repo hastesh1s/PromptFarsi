@@ -1,17 +1,20 @@
 const data = [
 {
+id: "realistic-selfie",
 image:"https://i.imgur.com/R6qSBHK.jpeg",
 title:"عکس واقع‌گرایانه",
 category:"image",
 prompt:`A low-angle close-up selfie captured outdoors under strong natural sunlight. The subject looks directly into the camera with a candid and authentic expression. Bright sunlight creates realistic shadows across the face while preserving skin texture, pores, subtle imperfections, and natural highlights. The background contains blue sky, ocean, coastline, or open natural scenery softly visible behind the subject. Captured with a modern smartphone using a wide-angle lens. Ultra-photorealistic photography. Natural color science. Realistic skin response to sunlight. Sharp focus. Authentic environmental lighting. No beauty filters. No skin smoothing. No CGI appearance. No AI-generated artifacts. The overall mood is vibrant, energetic, spontaneous, confident, and vacation-oriented`
 },
 {
+id: "football-poster",
 image:"https://i.imgur.com/zOvNCFY.jpeg",
 title:"پوستر فوتبالی",
 category:"image",
 prompt:`@PLAYER = “[Farshad Farahani]” @CLUB = “[Real Madrid]” @NUMBER = “[7]” OPTIONAL: @POSITION = “[Winger]” @HEADLINE = “[Legacy Never Ends]” @LEAGUE = “[UEFA Champions League]” 3:4 Aspect Ratio is a MUST! Create an ultra-premium cinematic CLUB FOOTBALL editorial poster in vertical 3:4 aspect ratio. MAIN SUBJECT: A hyper-realistic stylized portrait of @PLAYER sitting on a large minimalist geometric cube displaying the number @NUMBER on the front face. The player sits centered symmetrically: elbows resting naturally on thighs hands clasped together confident focused expression looking slightly upward toward the light calm warrior mentality powerful silent energy premium athletic posture The player wears the official @CLUB latest home/away kit. IF A JERSEY REFERENCE IMAGE IS PROVIDED: use the uploaded jersey EXACTLY as reference preserve authentic colors preserve collar design preserve sleeve trim preserve sponsor/logo placement preserve club crest placement preserve league patches preserve typography style preserve number styling preserve fabric texture preserve stitching details do NOT redesign the jersey do NOT simplify the jersey maintain realistic fabric folds and compression maintain authentic football kit realism STYLE: Minimal luxury editorial mixed with cinematic football illustration realism. The artwork should feel like: elite UEFA campaign art premium football magazine cover luxury Nike / Adidas / Puma campaign collectible sports poster textured digital illustration cinematic realism subtle hand-painted finish ultra-clean composition sophisticated geometric layout COMPOSITION: centered perfectly symmetrical layout player occupies most of the frame vertically large oversized faded @NUMBER behind the player additional large @NUMBER integrated into the cube elegant negative space modern grid-system inspired composition thin technical line elements subtle alignment guides minimal geometric accents editorial sports design language BACKGROUND: Warm off-white / ivory textured paper background with: subtle grain soft paper texture faint watercolor shading elegant negative space minimal geometric accents subtle halftone textures faint architectural lines soft ambient gradients collectible poster finish CLUB VISUAL LANGUAGE: Automatically generate elegant visual accents inspired by @CLUB: official club color palette subtle stadium-inspired geometry minimal club identity graphics premium football branding aesthetics modern UEFA campaign language thin editorial line systems luxury sportswear campaign energy elegant color bars inspired by club colors TYPOGRAPHY: Top-left corner: “@LEAGUE 2026” or “EUROPEAN NIGHTS” or “CLUB WORLD TOUR” with elegant football branding aesthetics. Headline system: If @HEADLINE is empty, generate a unique cinematic headline automatically inspired by: club legacy football greatness ambition pressure glory dynasty leadership destiny rivalry championship mentality Examples: “GLORY DEMANDS MORE” “BORN FOR THE BIG STAGE” “LEGACY NEVER RESTS” “KINGS OF EUROPE” “DESTINY WEARS THIS CREST” “THE NIGHT BELONGS TO LEGENDS” “PRESSURE CREATES ICONS” PLAYER INFO SYSTEM: Include elegant editorial typography blocks with: @PLAYER @POSITION @CLUB optional captain/vice-captain role subtle signature aesthetic premium sports typography hierarchy VISUAL QUALITY: ultra detailed skin texture realistic anatomy and muscles cinematic facial lighting realistic football boots realistic socks and kit wrinkles premium editorial contrast subtle warm highlights elegant shadows realistic fabric compression museum-poster finish highly refined composition extremely clean edges ultra premium football campaign quality LIGHTING: Soft cinematic studio lighting: warm overhead key light subtle rim light controlled soft shadows realistic skin reflections elegant ambient illumination premium sports editorial lighting MOOD: iconic ambitious timeless elite athlete mentality`
 },
 {
+id: "chatgpt-guide",
 image:"https://i.imgur.com/ixKEmFB.png",
 title:"chatgpt.",
 category:"article",
@@ -93,6 +96,7 @@ prompt: `آنتروپیک؛ شرکتی که می‌خواد ۹۰۰ میلیار�
 ۳۰ میلیارد دلار سرمایه جدید قراره صرف زیرساخت محاسباتی، استخدام محققین بیشتر، و توسعه نسل بعدی Claude بشه. یه چیزی مطمئنه: اون استارتاپ کوچیکی که چند سال پیش از OpenAI جدا شد، دیگه کوچیک نیست.`
 },
 {
+id: "iranian-portrait",
 image:"https://i.imgur.com/t4R1aCW.png",
 title:"پرتره هنری ایرانی",
 category:"image",
