@@ -326,7 +326,9 @@ card.onclick = () => {
   });
 }
 
-render(data);
+window.onload = () => {
+  render(data);
+};
 
 function openModal(item){
   document.getElementById("modal").classList.add("open");
