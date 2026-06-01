@@ -1,17 +1,32 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Prompt Gallery</title>
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&display=swap" rel="stylesheet">
+
+<title>پرامپت فارسی | مرجع پرامپت هوش مصنوعی، ChatGPT و Midjourney</title>
+
+<meta name="description" content="بهترین و کامل‌ترین آرشیو پرامپت‌های فارسی برای ChatGPT، Gemini، Claude، Midjourney، Flux و سایر ابزارهای هوش مصنوعی.">
+<meta name="keywords" content="پرامپت فارسی, پرامپت هوش مصنوعی, ChatGPT, Midjourney, Gemini, Claude, Flux, PromptFarsi">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#050505">
+
+<meta property="og:title" content="پرامپت فارسی | مرجع هوش مصنوعی">
+<meta property="og:description" content="آرشیو حرفه‌ای پرامپت‌های فارسی برای ابزارهای هوش مصنوعی">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;900&display=swap" rel="stylesheet">
 
 <style>
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:sans-serif;
+font-family:'Vazirmatn',sans-serif;
 }
 
 body{
@@ -20,62 +35,83 @@ color:white;
 padding:20px;
 }
 
+/* HEADER */
 .header{
 text-align:center;
-margin-bottom:40px;
+margin-bottom:35px;
 }
 
 .logo{
-font-size:3rem;
+font-size:3.4rem;
 font-weight:900;
-letter-spacing:-2px;
-background:linear-gradient(90deg,#ffffff,#cfcfcf);
+background:linear-gradient(135deg,#fff,#aaa);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-margin-bottom:10px;
+text-shadow:0 0 30px rgba(255,255,255,0.1);
 }
 
 .header p{
-color:#8a8a8a;
-font-size:1rem;
+color:#aaa;
+margin-top:8px;
+font-size:14px;
 }
+
+/* SEARCH */
+.search-box{
+margin:20px auto;
+max-width:500px;
+display:flex;
+}
+
+.search-box input{
+width:100%;
+padding:12px;
+border-radius:12px;
+border:1px solid #333;
+background:#111;
+color:white;
+outline:none;
+}
+
+/* GRID */
 .gallery{
 display:grid;
-grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
 gap:20px;
+margin-top:25px;
 }
 
 .card{
-background:#0e0e0e;
+background:#0f0f0f;
 border:1px solid #222;
 border-radius:16px;
 overflow:hidden;
 cursor:pointer;
-transition:.3s;
+transition:0.3s;
 }
 
 .card:hover{
-transform:translateY(-5px);
-border-color:#444;
+transform:translateY(-6px);
+border-color:#555;
 }
 
 .card img{
 width:100%;
-height:220px;
+height:200px;
 object-fit:cover;
-display:block;
 }
 
 .card-title{
-padding:15px;
-font-size:15px;
+padding:12px;
+font-size:14px;
 color:#ddd;
 }
 
+/* MODAL */
 .modal{
 position:fixed;
 inset:0;
-background:rgba(0,0,0,.8);
+background:rgba(0,0,0,0.85);
 display:none;
 justify-content:center;
 align-items:center;
@@ -85,9 +121,9 @@ z-index:999;
 
 .modal-content{
 background:#111;
-max-width:700px;
 width:100%;
-border-radius:20px;
+max-width:700px;
+border-radius:18px;
 overflow:hidden;
 }
 
@@ -98,27 +134,44 @@ object-fit:cover;
 }
 
 .prompt{
-padding:20px;
-line-height:1.8;
+padding:15px;
 white-space:pre-wrap;
+line-height:1.7;
+color:#ddd;
+}
+
+.actions{
+display:flex;
+gap:10px;
+padding:10px;
+}
+
+button{
+flex:1;
+padding:10px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+background:#222;
+color:white;
+transition:0.3s;
+}
+
+button:hover{
+background:#333;
 }
 
 .close{
-padding:15px;
 text-align:center;
-background:#1b1b1b;
+padding:12px;
+background:#1a1a1a;
 cursor:pointer;
 }
 
 .close:hover{
-background:#292929;
+background:#2a2a2a;
 }
 
-@media(max-width:600px){
-.card img{
-height:180px;
-}
-}
 </style>
 </head>
 
@@ -126,74 +179,91 @@ height:180px;
 
 <div class="header">
 <h1 class="logo">پرامپت فارسی</h1>
-<p>بزرگ‌ترین آرشیو پرامپت‌های فارسی هوش مصنوعی</p>
+<p>مرجع حرفه‌ای پرامپت‌های هوش مصنوعی</p>
+</div>
+
+<div class="search-box">
+<input type="text" id="search" placeholder="جستجوی پرامپت...">
 </div>
 
 <div class="gallery" id="gallery"></div>
 
+<!-- MODAL -->
 <div class="modal" id="modal">
 <div class="modal-content">
 <img id="modalImage">
 <div class="prompt" id="modalPrompt"></div>
-<div class="close" onclick="closeModal()">
-بستن
+
+<div class="actions">
+<button onclick="copyPrompt()">📋 کپی پرامپت</button>
 </div>
+
+<div class="close" onclick="closeModal()">بستن</div>
 </div>
 </div>
 
 <script>
 
-const galleryItems = [
-
+let data = [
 {
 image:"https://picsum.photos/600/400?1",
-title:"بارسلونا",
-prompt:`Create a realistic football poster of a Barcelona player,
-cinematic lighting,
-8K quality,
-ultra detailed.`
+title:"بارسلونا سینمایی",
+prompt:`Create a cinematic football poster of Barcelona player, ultra realistic, 8K, dramatic lighting`
 },
-
 {
 image:"https://picsum.photos/600/400?2",
-title:"سایبرپانک",
-prompt:`Cyberpunk city at night,
-neon lights,
-rain,
-ultra realistic,
-high detail.`
+title:"سایبرپانک شب",
+prompt:`Cyberpunk city at night, neon lights, rain, ultra detailed, futuristic style`
+},
+{
+image:"https://picsum.photos/600/400?3",
+title:"طبیعت آرام",
+prompt:`Peaceful nature landscape, mountains, lake, sunrise, ultra realistic photography`
 }
-
 ];
 
-// ساخت گالری
+let currentPrompt="";
+
+// render
+function render(list){
 const gallery=document.getElementById("gallery");
+gallery.innerHTML="";
 
-galleryItems.forEach(item=>{
-
+list.forEach((item,index)=>{
 gallery.innerHTML+=`
-<div class="card"
-onclick='openModal(${JSON.stringify(item)})'>
-
+<div class="card" onclick="openModal(${index})">
 <img src="${item.image}">
 <div class="card-title">${item.title}</div>
-
-</div>
-`;
-
+</div>`;
 });
+}
 
-function openModal(item){
+render(data);
 
+// modal
+function openModal(i){
 document.getElementById("modal").style.display="flex";
-document.getElementById("modalImage").src=item.image;
-document.getElementById("modalPrompt").innerText=item.prompt;
-
+document.getElementById("modalImage").src=data[i].image;
+document.getElementById("modalPrompt").innerText=data[i].prompt;
+currentPrompt=data[i].prompt;
 }
 
 function closeModal(){
 document.getElementById("modal").style.display="none";
 }
+
+// copy
+function copyPrompt(){
+navigator.clipboard.writeText(currentPrompt);
+alert("کپی شد ✅");
+}
+
+// search
+document.getElementById("search").addEventListener("input",function(e){
+let value=e.target.value.toLowerCase();
+let filtered=data.filter(item=>item.title.toLowerCase().includes(value));
+render(filtered);
+});
 
 </script>
 
