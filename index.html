@@ -5,21 +5,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>پرامپت فارسی | مرجع پرامپت هوش مصنوعی، ChatGPT و Midjourney</title>
+<title>پرامپت فارسی</title>
 
-<meta name="description" content="بهترین و کامل‌ترین آرشیو پرامپت‌های فارسی برای ChatGPT، Gemini، Claude، Midjourney، Flux و سایر ابزارهای هوش مصنوعی.">
-<meta name="keywords" content="پرامپت فارسی, پرامپت هوش مصنوعی, ChatGPT, Midjourney, Gemini, Claude, Flux, PromptFarsi">
-<meta name="robots" content="index,follow">
-<meta name="theme-color" content="#050505">
-
-<meta property="og:title" content="پرامپت فارسی | مرجع هوش مصنوعی">
-<meta property="og:description" content="آرشیو حرفه‌ای پرامپت‌های فارسی برای ابزارهای هوش مصنوعی">
-<meta property="og:type" content="website">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;900&display=swap" rel="stylesheet">
-<link rel="icon" type="image/png" href="favicon.png?v=999">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
 
@@ -39,29 +27,47 @@ padding:20px;
 /* HEADER */
 .header{
 text-align:center;
-margin-bottom:35px;
+margin-bottom:20px;
 }
 
 .logo{
-font-size:3.4rem;
+font-size:3rem;
 font-weight:900;
 background:linear-gradient(135deg,#fff,#aaa);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-text-shadow:0 0 30px rgba(255,255,255,0.1);
 }
 
 .header p{
 color:#aaa;
-margin-top:8px;
-font-size:14px;
+}
+
+/* CATEGORIES */
+.categories{
+display:flex;
+gap:10px;
+justify-content:center;
+flex-wrap:wrap;
+margin:15px 0;
+}
+
+.categories button{
+padding:8px 12px;
+border:none;
+border-radius:10px;
+background:#222;
+color:white;
+cursor:pointer;
+}
+
+.categories button:hover{
+background:#333;
 }
 
 /* SEARCH */
 .search-box{
-margin:20px auto;
 max-width:500px;
-display:flex;
+margin:10px auto 20px;
 }
 
 .search-box input{
@@ -71,7 +77,6 @@ border-radius:12px;
 border:1px solid #333;
 background:#111;
 color:white;
-outline:none;
 }
 
 /* GRID */
@@ -79,7 +84,6 @@ outline:none;
 display:grid;
 grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
 gap:20px;
-margin-top:25px;
 }
 
 .card{
@@ -93,7 +97,6 @@ transition:0.3s;
 
 .card:hover{
 transform:translateY(-6px);
-border-color:#555;
 }
 
 .card img{
@@ -103,9 +106,7 @@ object-fit:cover;
 }
 
 .card-title{
-padding:12px;
-font-size:14px;
-color:#ddd;
+padding:10px;
 }
 
 /* MODAL */
@@ -125,47 +126,33 @@ background:#111;
 width:100%;
 max-width:700px;
 border-radius:18px;
+display:flex;
+flex-direction:column;
+max-height:90vh;
 overflow:hidden;
 }
 
-/* 👇 FIX ها (همونی که خواستی) */
-.modal-content{
-  display:flex;
-  flex-direction:column;
-  max-height:90vh;
+.modal-content img{
+width:100%;
+max-height:300px;
+object-fit:cover;
 }
 
 .prompt{
-  padding:15px;
-  white-space:pre-wrap;
-  line-height:1.7;
-
-  overflow-y:auto;
-  max-height:55vh;
-
-  color:#ddd;
+padding:15px;
+white-space:pre-wrap;
+overflow-y:auto;
+max-height:55vh;
+line-height:1.7;
 }
 
 .actions{
-  display:flex;
-  gap:10px;
-  padding:10px;
-
-  position:sticky;
-  bottom:0;
-  background:#111;
-}
-
-html,body{
-  overflow-y:auto;
-}
-
-/* FIX END */
-
-.modal-content img{
-width:100%;
-max-height:400px;
-object-fit:cover;
+display:flex;
+gap:10px;
+padding:10px;
+position:sticky;
+bottom:0;
+background:#111;
 }
 
 button{
@@ -176,7 +163,6 @@ border-radius:10px;
 cursor:pointer;
 background:#222;
 color:white;
-transition:0.3s;
 }
 
 button:hover{
@@ -190,10 +176,6 @@ background:#1a1a1a;
 cursor:pointer;
 }
 
-.close:hover{
-background:#2a2a2a;
-}
-
 </style>
 </head>
 
@@ -201,11 +183,19 @@ background:#2a2a2a;
 
 <div class="header">
 <h1 class="logo">پرامپت فارسی</h1>
-<p>مرجع حرفه‌ای پرامپت‌های هوش مصنوعی</p>
+<p>مرجع پرامپت هوش مصنوعی</p>
+</div>
+
+<!-- دسته‌بندی -->
+<div class="categories">
+<button onclick="setCategory('all')">همه</button>
+<button onclick="setCategory('image')">پرامپت عکس</button>
+<button onclick="setCategory('football')">فوتبالی</button>
+<button onclick="setCategory('article')">مقالات</button>
 </div>
 
 <div class="search-box">
-<input type="text" id="search" placeholder="جستجوی پرامپت...">
+<input type="text" id="search" placeholder="جستجو...">
 </div>
 
 <div class="gallery" id="gallery"></div>
@@ -217,7 +207,7 @@ background:#2a2a2a;
 <div class="prompt" id="modalPrompt"></div>
 
 <div class="actions">
-<button onclick="copyPrompt()">📋 کپی پرامپت</button>
+<button onclick="copyPrompt()">📋 کپی</button>
 </div>
 
 <div class="close" onclick="closeModal()">بستن</div>
@@ -226,28 +216,50 @@ background:#2a2a2a;
 
 <script>
 
+let currentCategory = "all";
+
 let data = [
 {
 image:"https://i.imgur.com/R6qSBHK.jpeg",
-title:"واقع گرایانه",
-prompt:`A low-angle close-up selfie...`
+title:"عکس واقع‌گرایانه",
+category:"image",
+prompt:"پرامپت عکس واقعی ..."
 },
 {
 image:"https://i.imgur.com/zOvNCFY.jpeg",
 title:"پوستر فوتبالی",
-prompt:`Football poster prompt...`
+category:"football",
+prompt:"پرامپت فوتبال ..."
+},
+{
+image:"https://i.imgur.com/R6qSBHK.jpeg",
+title:"مقاله هوش مصنوعی",
+category:"article",
+prompt:"این یک مقاله درباره هوش مصنوعی است ..."
 }
 ];
 
-let currentPrompt="";
+// دسته‌بندی
+function setCategory(cat){
+currentCategory = cat;
+render(getFiltered());
+}
 
+// فیلتر ترکیبی
+function getFiltered(){
+return data.filter(item=>{
+return currentCategory === "all" || item.category === currentCategory;
+});
+}
+
+// render
 function render(list){
 const gallery=document.getElementById("gallery");
 gallery.innerHTML="";
 
-list.forEach((item,index)=>{
+list.forEach((item,i)=>{
 gallery.innerHTML+=`
-<div class="card" onclick="openModal(${index})">
+<div class="card" onclick="openModal(${i})">
 <img src="${item.image}">
 <div class="card-title">${item.title}</div>
 </div>`;
@@ -256,11 +268,12 @@ gallery.innerHTML+=`
 
 render(data);
 
+// modal
 function openModal(i){
 document.getElementById("modal").style.display="flex";
 document.getElementById("modalImage").src=data[i].image;
 document.getElementById("modalPrompt").innerText=data[i].prompt;
-currentPrompt=data[i].prompt;
+window.currentPrompt=data[i].prompt;
 }
 
 function closeModal(){
@@ -268,13 +281,19 @@ document.getElementById("modal").style.display="none";
 }
 
 function copyPrompt(){
-navigator.clipboard.writeText(currentPrompt);
-alert("کپی شد ✅");
+navigator.clipboard.writeText(window.currentPrompt);
+alert("کپی شد");
 }
 
+// search
 document.getElementById("search").addEventListener("input",function(e){
-let value=e.target.value.toLowerCase();
-let filtered=data.filter(item=>item.title.toLowerCase().includes(value));
+let v=e.target.value.toLowerCase();
+
+let filtered = data.filter(item =>
+item.title.toLowerCase().includes(v) &&
+(currentCategory === "all" || item.category === currentCategory)
+);
+
 render(filtered);
 });
 
