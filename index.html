@@ -410,6 +410,7 @@ function render(list){
   list.forEach(item => {
     const card = document.createElement("div");
     card.className = "card";
+card.style.animationDelay = (list.indexOf(item) * 0.1) + "s";
     card.innerHTML = `
       <img src="${item.image}" alt="${item.title}">
       <div class="card-title">${item.title}</div>
