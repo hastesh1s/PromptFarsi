@@ -225,6 +225,7 @@ padding:12px;
 background:#1a1a1a;
 cursor:pointer;
 }
+
 .telegram-btn{
 position:fixed;
 bottom:24px;
@@ -264,33 +265,39 @@ fill:white;
 </div>
   
 <div class="categories">
-<button class="active" onclick="setCategory('all', this)">همه</button>
-<button onclick="setCategory('image', this)">پرامپت عکس</button>
-<button onclick="setCategory('article', this)">مقالات</button>
+  <button class="active" onclick="setCategory('all', this)">همه</button>
+  <button onclick="setCategory('image', this)">پرامپت عکس</button>
+  <button onclick="setCategory('article', this)">مقالات</button>
 </div>
 
 <div class="search-box">
-<input type="text" id="search" placeholder="جستجو...">
+  <input type="text" id="search" placeholder="جستجو...">
 </div>
 
 <div class="gallery" id="gallery"></div>
 
 <div class="modal" id="modal">
-<div class="modal-content">
-<img id="modalImage" alt="">
-<div class="prompt" id="modalPrompt"></div>
-<div class="actions">
-<button onclick="copyPrompt()">📋 کپی</button>
+  <div class="modal-content">
+    <img id="modalImage" alt="">
+    <div class="prompt" id="modalPrompt"></div>
+    <div class="actions">
+      <button onclick="copyPrompt()">📋 کپی</button>
+    </div>
+    <div class="close" onclick="closeModal()">بستن</div>
+  </div>
 </div>
-<div class="close" onclick="closeModal()">بستن</div>
-</div>
-</div>
+
+<a class="telegram-btn" href="https://t.me/nasiri4440" target="_blank">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/>
+  </svg>
+</a>
+
+<script src="data.js"></script>
 
 <script>
 
 let currentCategory = "all";
-
-
 
 function setCategory(cat, btn){
   currentCategory = cat;
@@ -310,25 +317,20 @@ function getFiltered(){
 function render(list){
   const gallery = document.getElementById("gallery");
   gallery.innerHTML = "";
-  list.forEach(item => {
+  list.forEach((item, index) => {
     const card = document.createElement("div");
     card.className = "card";
-card.style.animationDelay = (list.indexOf(item) * 0.1) + "s";
+    card.style.animationDelay = (index * 0.1) + "s";
     card.innerHTML = `
       <img src="${item.image}" alt="${item.title}">
       <div class="card-title">${item.title}</div>
     `;
-card.onclick = () => {
-  window.location.href = `prompt.html?id=${item.id}`;
-}
-    
+    card.onclick = () => {
+      window.location.href = `prompt.html?id=${item.id}`;
+    };
     gallery.appendChild(card);
   });
 }
-
-window.onload = () => {
-  render(data);
-};
 
 function openModal(item){
   document.getElementById("modal").classList.add("open");
@@ -359,16 +361,11 @@ document.getElementById("search").addEventListener("input", function(){
   render(getFiltered());
 });
 
-</script>
-<a class="telegram-btn" href="https://t.me/nasiri4440" target="_blank">
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/>
-  </svg>
-</a>
-<script src="data.js"></script>
+window.onload = () => {
+  render(data);
+};
 
-<script>
-render(data);
 </script>
+
 </body>
 </html>
