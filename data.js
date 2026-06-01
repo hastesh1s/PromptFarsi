@@ -102,4 +102,11 @@ title:"پرتره هنری ایرانی",
 category:"image",
 prompt:`Create a minimalist double exposure travel poster for me. The main subject is a stylish Iran depicted in a clear silhouette in profile, in which it is easy to recognize the traveler based on the attached photo. The object is dressed in decent fashion for traveling around the world (simple clothes, neat style)`
 },
+{
+  id: "parti_prompt",
+  image: "https://i.imgur.com/csrvjJr.png",
+  title: "عکس در پارتی",
+  category: "image",
+  prompt: "A raw amateur phone photo shot on iphone photos with no filters, an everyday snapshot, IMG_3032.HEIC. in 2021 The photo was taken hastily and quickly on an iphone, iconic iphone lighting. Far shot of Lainey, cute girl with makeup, 18 year old. British girl, 1a blonde hair. tanned, navy blue tube top, white tight shorts, sandals. unique lively expressions, smile, she is sitting in a pub in suburban london, people, built in 2000s. It is summer, humid, night at 10PM, ceiling lights creating harsh lighting and harsh shadows, overexposed photo. There's no filters, no captions. very raw photo shot on iphone 16. The photo looks like an everyday photo shot on an iphone. Everyday mediocre image shot on iphone, mediocre quality, shaky, low quality. UGC, IMG_3032.HEIC, raw style super amateur photo 2021, ugc, shot with an iPhone 16, no bokeh, no post-processing."
+}
 ];
