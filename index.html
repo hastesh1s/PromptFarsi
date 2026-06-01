@@ -1,66 +1,191 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prompt Gallery</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt Gallery</title>
 
-  <link rel="stylesheet" href="style.css">
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:sans-serif;
+}
+
+body{
+background:#050505;
+color:white;
+padding:20px;
+}
+
+.header{
+text-align:center;
+margin-bottom:30px;
+}
+
+.header h1{
+font-size:2rem;
+margin-bottom:10px;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+gap:20px;
+}
+
+.card{
+background:#0e0e0e;
+border:1px solid #222;
+border-radius:16px;
+overflow:hidden;
+cursor:pointer;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+border-color:#444;
+}
+
+.card img{
+width:100%;
+height:220px;
+object-fit:cover;
+display:block;
+}
+
+.card-title{
+padding:15px;
+font-size:15px;
+color:#ddd;
+}
+
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.8);
+display:none;
+justify-content:center;
+align-items:center;
+padding:20px;
+z-index:999;
+}
+
+.modal-content{
+background:#111;
+max-width:700px;
+width:100%;
+border-radius:20px;
+overflow:hidden;
+}
+
+.modal-content img{
+width:100%;
+max-height:400px;
+object-fit:cover;
+}
+
+.prompt{
+padding:20px;
+line-height:1.8;
+white-space:pre-wrap;
+}
+
+.close{
+padding:15px;
+text-align:center;
+background:#1b1b1b;
+cursor:pointer;
+}
+
+.close:hover{
+background:#292929;
+}
+
+@media(max-width:600px){
+.card img{
+height:180px;
+}
+}
+</style>
 </head>
+
 <body>
 
-<header>
-  <h1>Prompt Gallery</h1>
-  <p>Daily AI Image Prompts</p>
-</header>
-
-<div class="container">
-
-  <aside class="sidebar">
-    <h3>Categories</h3>
-
-    <ul>
-      <li>Fantasy</li>
-      <li>Anime</li>
-      <li>3D Art</li>
-      <li>Cyberpunk</li>
-    </ul>
-  </aside>
-
-  <main class="grid">
-
-    <div class="card">
-      <img src="https://picsum.photos/300/200?1">
-      <h3>Fantasy Castle</h3>
-
-      <button onclick="copyPrompt('Fantasy Castle Prompt')">
-        Copy Prompt
-      </button>
-    </div>
-
-    <div class="card">
-      <img src="https://picsum.photos/300/200?2">
-      <h3>Cyber City</h3>
-
-      <button onclick="copyPrompt('Cyber City Prompt')">
-        Copy Prompt
-      </button>
-    </div>
-
-    <div class="card">
-      <img src="https://picsum.photos/300/200?3">
-      <h3>Anime Girl</h3>
-
-      <button onclick="copyPrompt('Anime Girl Prompt')">
-        Copy Prompt
-      </button>
-    </div>
-
-  </main>
-
+<div class="header">
+<h1>🎨 Prompt Gallery</h1>
+<p>مجموعه پرامپت‌های من</p>
 </div>
 
-<script src="script.js"></script>
+<div class="gallery" id="gallery"></div>
+
+<div class="modal" id="modal">
+<div class="modal-content">
+<img id="modalImage">
+<div class="prompt" id="modalPrompt"></div>
+<div class="close" onclick="closeModal()">
+بستن
+</div>
+</div>
+</div>
+
+<script>
+
+const galleryItems = [
+
+{
+image:"https://picsum.photos/600/400?1",
+title:"بارسلونا",
+prompt:`Create a realistic football poster of a Barcelona player,
+cinematic lighting,
+8K quality,
+ultra detailed.`
+},
+
+{
+image:"https://picsum.photos/600/400?2",
+title:"سایبرپانک",
+prompt:`Cyberpunk city at night,
+neon lights,
+rain,
+ultra realistic,
+high detail.`
+}
+
+];
+
+// ساخت گالری
+const gallery=document.getElementById("gallery");
+
+galleryItems.forEach(item=>{
+
+gallery.innerHTML+=`
+<div class="card"
+onclick='openModal(${JSON.stringify(item)})'>
+
+<img src="${item.image}">
+<div class="card-title">${item.title}</div>
+
+</div>
+`;
+
+});
+
+function openModal(item){
+
+document.getElementById("modal").style.display="flex";
+document.getElementById("modalImage").src=item.image;
+document.getElementById("modalPrompt").innerText=item.prompt;
+
+}
+
+function closeModal(){
+document.getElementById("modal").style.display="none";
+}
+
+</script>
 
 </body>
 </html>
