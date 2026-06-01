@@ -25,233 +25,445 @@
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Vazirmatn',sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Vazirmatn', sans-serif;
 }
 
-body{
-background:#050505;
-color:white;
-padding:20px;
+body {
+  background: #050505;
+  color: white;
+  padding: 20px;
 }
 
-.header{
-text-align:center;
-margin-bottom:20px;
+.header {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.logo{
-font-size:3rem;
-font-weight:900;
-background:linear-gradient(135deg,#fff,#aaa);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
+.logo {
+  font-size: 3rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #fff, #aaa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.header p{
-color:#aaa;
-}
-  
-.logo-wrapper{
-display:flex;
-align-items:center;
-justify-content:center;
-gap:12px;
-margin-bottom:6px;
+.header p {
+  color: #aaa;
 }
 
-.logo-img{
-width:52px;
-height:52px;
-border-radius:12px;
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 6px;
 }
 
-.categories{
-display:flex;
-gap:10px;
-justify-content:center;
-flex-wrap:wrap;
-margin:15px 0;
+.logo-img {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
 }
 
-.categories button{
-padding:8px 12px;
-border:none;
-border-radius:10px;
-background:#222;
-color:white;
-cursor:pointer;
-transition:0.2s;
+.categories {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 15px 0;
 }
 
-.categories button:hover{
-background:#333;
+.categories button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 10px;
+  background: #222;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-.categories button.active{
-background:#4F6EF7;
-color:white;
+.categories button:hover {
+  background: #333;
 }
 
-.search-box{
-max-width:500px;
-margin:10px auto 20px;
+.categories button.active {
+  background: #4F6EF7;
+  color: white;
 }
 
-.search-box input{
-width:100%;
-padding:12px;
-border-radius:12px;
-border:1px solid #333;
-background:#111;
-color:white;
+.search-box {
+  max-width: 500px;
+  margin: 10px auto 20px;
 }
 
-.gallery{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
-gap:20px;
+.search-box input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #333;
+  background: #111;
+  color: white;
 }
 
-.card{
-background:#0f0f0f;
-border:1px solid #222;
-border-radius:16px;
-overflow:hidden;
-cursor:pointer;
-transition:0.3s;
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
 }
 
-.card:hover{
-transform:translateY(-6px);
-border-color:#4F6EF7;
-transition:0.3s;
+/* ── کارت ── */
+.card {
+  background: #0f0f0f;
+  border: 1px solid #222;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.3s;
+  animation: fadeUp 0.4s ease both;
+  position: relative;
 }
 
-.card{
-animation:fadeUp 0.4s ease both;
+.card:hover {
+  transform: translateY(-6px);
+  border-color: #4F6EF7;
 }
 
-@keyframes fadeUp{
-from{
-opacity:0;
-transform:translateY(20px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-  
-.card img{
-width:100%;
-height:200px;
-object-fit:cover;
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.card-title{
-padding:10px;
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
 
-.modal{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,0.85);
-display:none;
-justify-content:center;
-align-items:center;
-padding:20px;
-z-index:999;
+.card-title {
+  padding: 10px;
 }
 
-.modal.open{
-display:flex;
+/* ── دکمه علاقه‌مندی روی کارت ── */
+.fav-btn {
+  position: absolute;
+  top: 8px;
+  left: 8px; /* چون RTL است سمت چپ = بیرون */
+  background: rgba(0,0,0,0.6);
+  border: none;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+  z-index: 2;
+  flex: unset;
+  padding: 0;
 }
 
-.modal-content{
-background:#111;
-width:100%;
-max-width:700px;
-border-radius:18px;
-display:flex;
-flex-direction:column;
-max-height:90vh;
-overflow:hidden;
+.fav-btn:hover {
+  transform: scale(1.2);
+  background: rgba(0,0,0,0.8);
 }
 
-.modal-content img{
-width:100%;
-max-height:300px;
-object-fit:cover;
+/* ── ستاره‌های روی کارت ── */
+.card-stars {
+  display: flex;
+  gap: 3px;
+  padding: 0 10px 10px;
+  direction: ltr;
+  justify-content: flex-end;
 }
 
-.prompt{
-padding:15px;
-white-space:pre-wrap;
-overflow-y:auto;
-max-height:55vh;
-line-height:1.7;
+.card-stars span {
+  font-size: 14px;
+  cursor: pointer;
+  color: #555;
+  transition: color 0.15s;
 }
 
-.actions{
-display:flex;
-gap:10px;
-padding:10px;
-position:sticky;
-bottom:0;
-background:#111;
+.card-stars span.filled {
+  color: #f5c518;
 }
 
-button{
-flex:1;
-padding:10px;
-border:none;
-border-radius:10px;
-cursor:pointer;
-background:#222;
-color:white;
+/* ── مودال ── */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  z-index: 999;
 }
 
-button:hover{
-background:#333;
+.modal.open {
+  display: flex;
 }
 
-.close{
-text-align:center;
-padding:12px;
-background:#1a1a1a;
-cursor:pointer;
+.modal-content {
+  background: #111;
+  width: 100%;
+  max-width: 700px;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  overflow: hidden;
 }
 
-.telegram-btn{
-position:fixed;
-bottom:24px;
-left:24px;
-width:52px;
-height:52px;
-border-radius:50%;
-background:#229ED9;
-display:flex;
-align-items:center;
-justify-content:center;
-cursor:pointer;
-z-index:1000;
-transition:0.3s;
-text-decoration:none;
+.modal-content img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
 }
 
-.telegram-btn:hover{
-background:#1a8bbf;
-transform:scale(1.1);
+.prompt {
+  padding: 15px;
+  white-space: pre-wrap;
+  overflow-y: auto;
+  max-height: 55vh;
+  line-height: 1.7;
 }
 
-.telegram-btn svg{
-width:28px;
-height:28px;
-fill:white;
+/* ستاره‌ها داخل مودال */
+.modal-stars {
+  display: flex;
+  gap: 6px;
+  padding: 8px 15px;
+  align-items: center;
+  direction: ltr;
+}
+
+.modal-stars span {
+  font-size: 24px;
+  cursor: pointer;
+  color: #555;
+  transition: color 0.15s, transform 0.15s;
+}
+
+.modal-stars span:hover,
+.modal-stars span.hovered {
+  color: #f5c518;
+  transform: scale(1.2);
+}
+
+.modal-stars span.filled {
+  color: #f5c518;
+}
+
+.modal-stars-label {
+  color: #888;
+  font-size: 13px;
+  margin-right: 8px;
+}
+
+.modal-avg {
+  color: #aaa;
+  font-size: 12px;
+  padding: 0 15px 8px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  position: sticky;
+  bottom: 0;
+  background: #111;
+}
+
+button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #222;
+  color: white;
+}
+
+button:hover {
+  background: #333;
+}
+
+.close {
+  text-align: center;
+  padding: 12px;
+  background: #1a1a1a;
+  cursor: pointer;
+}
+
+/* ── Toast ── */
+.toast {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: #4F6EF7;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 2000;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── پنل تاریخچه / علاقه‌مندی ── */
+.side-panel {
+  position: fixed;
+  top: 0;
+  right: -360px;
+  width: 340px;
+  height: 100%;
+  background: #0d0d0d;
+  border-left: 1px solid #222;
+  z-index: 1100;
+  transition: right 0.3s;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.side-panel.open {
+  right: 0;
+}
+
+.side-panel h2 {
+  margin-bottom: 16px;
+  font-size: 1.1rem;
+  color: #eee;
+}
+
+.panel-item {
+  background: #161616;
+  border: 1px solid #222;
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.panel-item .panel-date {
+  font-size: 11px;
+  color: #555;
+  margin-top: 4px;
+}
+
+.panel-close {
+  align-self: flex-start;
+  background: #222;
+  border: none;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  flex: unset;
+  width: auto;
+}
+
+.panel-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1050;
+  display: none;
+}
+
+.panel-overlay.open {
+  display: block;
+}
+
+/* ── دکمه‌های شناور پایین ── */
+.fab-group {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.fab {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s;
+  text-decoration: none;
+  border: none;
+  font-size: 20px;
+  flex: unset;
+  padding: 0;
+}
+
+.fab:hover {
+  transform: scale(1.1);
+}
+
+.fab-telegram {
+  background: #229ED9;
+}
+
+.fab-fav {
+  background: #c0392b;
+}
+
+.fab-history {
+  background: #2d6a4f;
+}
+
+.telegram-btn {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #229ED9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.telegram-btn:hover {
+  background: #1a8bbf;
+  transform: scale(1.1);
+}
+
+.telegram-btn svg {
+  width: 28px;
+  height: 28px;
+  fill: white;
 }
 
 </style>
@@ -263,11 +475,12 @@ fill:white;
   <img src="favicon.png" class="logo-img" alt="لوگو">
   <h1 class="logo">پرامپت فارسی</h1>
 </div>
-  
+
 <div class="categories">
   <button class="active" onclick="setCategory('all', this)">همه</button>
   <button onclick="setCategory('image', this)">پرامپت عکس</button>
   <button onclick="setCategory('article', this)">مقالات</button>
+  <button onclick="setCategory('favorites', this)">❤️ علاقه‌مندی‌ها</button>
 </div>
 
 <div class="search-box">
@@ -276,95 +489,339 @@ fill:white;
 
 <div class="gallery" id="gallery"></div>
 
+<!-- مودال -->
 <div class="modal" id="modal">
   <div class="modal-content">
     <img id="modalImage" alt="">
     <div class="prompt" id="modalPrompt"></div>
+
+    <!-- ستاره‌های امتیازدهی -->
+    <div class="modal-stars" id="modalStars">
+      <span class="modal-stars-label">امتیاز:</span>
+      <span data-star="1">★</span>
+      <span data-star="2">★</span>
+      <span data-star="3">★</span>
+      <span data-star="4">★</span>
+      <span data-star="5">★</span>
+    </div>
+    <div class="modal-avg" id="modalAvg"></div>
+
     <div class="actions">
       <button onclick="copyPrompt()">📋 کپی</button>
+      <button onclick="toggleFavoriteModal()" id="favModalBtn">❤️ ذخیره</button>
     </div>
     <div class="close" onclick="closeModal()">بستن</div>
   </div>
 </div>
 
-<a class="telegram-btn" href="https://t.me/nasiri4440" target="_blank">
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/>
-  </svg>
-</a>
+<!-- پنل تاریخچه -->
+<div class="panel-overlay" id="historyOverlay" onclick="closePanel('history')"></div>
+<div class="side-panel" id="historyPanel">
+  <button class="panel-close" onclick="closePanel('history')">✕ بستن</button>
+  <h2>📋 تاریخچه کپی‌ها</h2>
+  <div id="historyList"></div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- دکمه‌های شناور -->
+<div class="fab-group">
+  <a class="fab fab-telegram" href="https://t.me/nasiri4440" target="_blank" title="تلگرام">
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="white">
+      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/>
+    </svg>
+  </a>
+  <button class="fab fab-history" title="تاریخچه" onclick="openPanel('history')">🕐</button>
+</div>
 
 <script src="data.js"></script>
 
 <script>
 
-let currentCategory = "all";
+// ─── localStorage helpers ───────────────────────────────────────────────────
 
-function setCategory(cat, btn){
+function getFavorites() {
+  return JSON.parse(localStorage.getItem('favorites') || '[]');
+}
+function saveFavorites(arr) {
+  localStorage.setItem('favorites', JSON.stringify(arr));
+}
+function isFavorite(id) {
+  return getFavorites().includes(id);
+}
+function toggleFavorite(id) {
+  let favs = getFavorites();
+  if (favs.includes(id)) {
+    favs = favs.filter(f => f !== id);
+    showToast('از علاقه‌مندی‌ها حذف شد');
+  } else {
+    favs.push(id);
+    showToast('❤️ ذخیره شد!');
+  }
+  saveFavorites(favs);
+  return favs.includes(id);
+}
+
+function getCopyHistory() {
+  return JSON.parse(localStorage.getItem('copyHistory') || '[]');
+}
+function addToHistory(item) {
+  let hist = getCopyHistory();
+  // اگر قبلاً هست، حذف کن و دوباره اول بذار
+  hist = hist.filter(h => h.id !== item.id);
+  hist.unshift({ id: item.id, title: item.title, date: new Date().toLocaleString('fa-IR') });
+  hist = hist.slice(0, 50);
+  localStorage.setItem('copyHistory', JSON.stringify(hist));
+}
+
+function getRatings() {
+  return JSON.parse(localStorage.getItem('ratings') || '{}');
+}
+function saveRating(id, stars) {
+  let ratings = getRatings();
+  ratings[id] = stars;
+  localStorage.setItem('ratings', JSON.stringify(ratings));
+}
+function getRating(id) {
+  return getRatings()[id] || 0;
+}
+
+// ─── Toast ───────────────────────────────────────────────────────────────────
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+// ─── Category & Filter ───────────────────────────────────────────────────────
+
+let currentCategory = 'all';
+
+function setCategory(cat, btn) {
   currentCategory = cat;
   document.querySelectorAll('.categories button').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   render(getFiltered());
 }
 
-function getFiltered(){
-  const searchVal = document.getElementById("search").value.toLowerCase();
-  return data.filter(item =>
-    (currentCategory === "all" || item.category === currentCategory) &&
-    item.title.toLowerCase().includes(searchVal)
-  );
+function getFiltered() {
+  const searchVal = document.getElementById('search').value.toLowerCase();
+  let list = data;
+  if (currentCategory === 'favorites') {
+    const favs = getFavorites();
+    list = data.filter(item => favs.includes(item.id));
+  } else if (currentCategory !== 'all') {
+    list = data.filter(item => item.category === currentCategory);
+  }
+  if (searchVal) {
+    list = list.filter(item => item.title.toLowerCase().includes(searchVal));
+  }
+  return list;
 }
 
-function render(list){
-  const gallery = document.getElementById("gallery");
-  gallery.innerHTML = "";
+// ─── Render ──────────────────────────────────────────────────────────────────
+
+function render(list) {
+  const gallery = document.getElementById('gallery');
+  gallery.innerHTML = '';
   list.forEach((item, index) => {
-    const card = document.createElement("div");
-    card.className = "card";
-    card.style.animationDelay = (index * 0.1) + "s";
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.style.animationDelay = (index * 0.07) + 's';
+
+    const favIcon = isFavorite(item.id) ? '❤️' : '🤍';
+    const userRating = getRating(item.id);
+
     card.innerHTML = `
+      <button class="fav-btn" data-id="${item.id}" title="ذخیره">${favIcon}</button>
       <img src="${item.image}" alt="${item.title}">
       <div class="card-title">${item.title}</div>
+      <div class="card-stars" data-id="${item.id}">
+        ${[1,2,3,4,5].map(s =>
+          `<span data-star="${s}" class="${s <= userRating ? 'filled' : ''}">★</span>`
+        ).join('')}
+      </div>
     `;
-    card.onclick = () => {
+
+    // کلیک روی کارت → صفحه پرامپت
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('.fav-btn') || e.target.closest('.card-stars')) return;
       window.location.href = `prompt.html?id=${item.id}`;
-    };
+    });
+
+    // دکمه علاقه‌مندی
+    card.querySelector('.fav-btn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      const btn = e.currentTarget;
+      const isFav = toggleFavorite(item.id);
+      btn.textContent = isFav ? '❤️' : '🤍';
+      // اگر در تب علاقه‌مندی هستیم، کارت رو حذف کن
+      if (currentCategory === 'favorites' && !isFav) {
+        card.style.opacity = '0';
+        card.style.transform = 'scale(0.9)';
+        card.style.transition = '0.3s';
+        setTimeout(() => render(getFiltered()), 300);
+      }
+    });
+
+    // ستاره‌ها
+    const starsContainer = card.querySelector('.card-stars');
+    starsContainer.querySelectorAll('span').forEach(star => {
+      star.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const val = parseInt(star.dataset.star);
+        saveRating(item.id, val);
+        updateCardStars(starsContainer, val);
+        showToast(`⭐ امتیاز ${val} از ۵ ثبت شد`);
+      });
+      star.addEventListener('mouseenter', () => {
+        const val = parseInt(star.dataset.star);
+        starsContainer.querySelectorAll('span').forEach(s => {
+          s.style.color = parseInt(s.dataset.star) <= val ? '#f5c518' : '#555';
+        });
+      });
+      star.addEventListener('mouseleave', () => {
+        updateCardStars(starsContainer, getRating(item.id));
+      });
+    });
+
     gallery.appendChild(card);
   });
 }
 
-function openModal(item){
-  document.getElementById("modal").classList.add("open");
-  document.getElementById("modalImage").src = item.image;
-  document.getElementById("modalImage").alt = item.title;
-  document.getElementById("modalPrompt").innerText = item.prompt;
+function updateCardStars(container, rating) {
+  container.querySelectorAll('span').forEach(s => {
+    s.classList.toggle('filled', parseInt(s.dataset.star) <= rating);
+    s.style.color = '';
+  });
+}
+
+// ─── Modal ───────────────────────────────────────────────────────────────────
+
+let currentItem = null;
+
+function openModal(item) {
+  currentItem = item;
+  document.getElementById('modal').classList.add('open');
+  document.getElementById('modalImage').src = item.image;
+  document.getElementById('modalImage').alt = item.title;
+  document.getElementById('modalPrompt').innerText = item.prompt;
   window.currentPrompt = item.prompt;
+
+  // دکمه علاقه‌مندی مودال
+  document.getElementById('favModalBtn').textContent =
+    isFavorite(item.id) ? '❤️ ذخیره شده' : '🤍 ذخیره';
+
+  // ستاره‌های مودال
+  updateModalStars(getRating(item.id));
 }
 
-function closeModal(){
-  document.getElementById("modal").classList.remove("open");
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  currentItem = null;
 }
 
-document.getElementById("modal").addEventListener("click", function(e){
-  if(e.target === this) closeModal();
+document.getElementById('modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
 });
 
-document.addEventListener("keydown", function(e){
-  if(e.key === "Escape") closeModal();
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
 });
 
-function copyPrompt(){
-  navigator.clipboard.writeText(window.currentPrompt);
-  alert("کپی شد");
+// ستاره‌های مودال
+function updateModalStars(rating) {
+  document.querySelectorAll('#modalStars [data-star]').forEach(s => {
+    s.classList.toggle('filled', parseInt(s.dataset.star) <= rating);
+  });
+  if (rating > 0) {
+    document.getElementById('modalAvg').textContent = `امتیاز شما: ${rating} از ۵`;
+  } else {
+    document.getElementById('modalAvg').textContent = 'هنوز امتیاز نداده‌اید';
+  }
 }
 
-document.getElementById("search").addEventListener("input", function(){
-  render(getFiltered());
+document.getElementById('modalStars').addEventListener('mouseover', (e) => {
+  if (!e.target.dataset.star) return;
+  const val = parseInt(e.target.dataset.star);
+  document.querySelectorAll('#modalStars [data-star]').forEach(s => {
+    s.classList.toggle('hovered', parseInt(s.dataset.star) <= val);
+  });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  render(data);
+document.getElementById('modalStars').addEventListener('mouseleave', () => {
+  document.querySelectorAll('#modalStars [data-star]').forEach(s => s.classList.remove('hovered'));
+  if (currentItem) updateModalStars(getRating(currentItem.id));
 });
-  
+
+document.getElementById('modalStars').addEventListener('click', (e) => {
+  if (!e.target.dataset.star || !currentItem) return;
+  const val = parseInt(e.target.dataset.star);
+  saveRating(currentItem.id, val);
+  updateModalStars(val);
+  showToast(`⭐ امتیاز ${val} از ۵ ثبت شد`);
+});
+
+// دکمه علاقه‌مندی مودال
+function toggleFavoriteModal() {
+  if (!currentItem) return;
+  const isFav = toggleFavorite(currentItem.id);
+  document.getElementById('favModalBtn').textContent = isFav ? '❤️ ذخیره شده' : '🤍 ذخیره';
+  // آپدیت کارت مربوطه
+  const favBtn = document.querySelector(`.fav-btn[data-id="${currentItem.id}"]`);
+  if (favBtn) favBtn.textContent = isFav ? '❤️' : '🤍';
+}
+
+// ─── Copy ────────────────────────────────────────────────────────────────────
+
+function copyPrompt() {
+  if (!window.currentPrompt) return;
+  navigator.clipboard.writeText(window.currentPrompt).then(() => {
+    showToast('✅ کپی شد!');
+    if (currentItem) addToHistory(currentItem);
+  });
+}
+
+// ─── پنل تاریخچه ─────────────────────────────────────────────────────────────
+
+function openPanel(type) {
+  if (type === 'history') {
+    renderHistory();
+    document.getElementById('historyPanel').classList.add('open');
+    document.getElementById('historyOverlay').classList.add('open');
+  }
+}
+
+function closePanel(type) {
+  document.getElementById(type + 'Panel').classList.remove('open');
+  document.getElementById(type + 'Overlay').classList.remove('open');
+}
+
+function renderHistory() {
+  const hist = getCopyHistory();
+  const el = document.getElementById('historyList');
+  if (hist.length === 0) {
+    el.innerHTML = '<p style="color:#555;font-size:13px">هنوز چیزی کپی نکرده‌اید.</p>';
+    return;
+  }
+  el.innerHTML = hist.map(h => `
+    <div class="panel-item">
+      <div>${h.title}</div>
+      <div class="panel-date">${h.date}</div>
+    </div>
+  `).join('');
+}
+
+// ─── Search & Init ───────────────────────────────────────────────────────────
+
+document.getElementById('search').addEventListener('input', () => render(getFiltered()));
+
+document.addEventListener('DOMContentLoaded', () => render(data));
+
 </script>
 
 </body>
