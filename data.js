@@ -1,4 +1,3 @@
-console.log("data.js loaded");
 const data = [
 {
 id: "realistic-selfie",
