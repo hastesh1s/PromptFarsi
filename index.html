@@ -390,11 +390,11 @@ gallery.innerHTML+=`
 render(data);
 
 // modal
-function openModal(i){
-document.getElementById("modal").style.display="flex";
-document.getElementById("modalImage").src=data[i].image;
-document.getElementById("modalPrompt").innerText=data[i].prompt;
-window.currentPrompt=data[i].prompt;
+function openModal(item){
+  document.getElementById("modal").style.display="flex";
+  document.getElementById("modalImage").src=item.image;
+  document.getElementById("modalPrompt").innerText=item.prompt;
+  window.currentPrompt=item.prompt;
 }
 
 function closeModal(){
