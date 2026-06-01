@@ -418,7 +418,10 @@ card.style.animationDelay = (list.indexOf(item) * 0.1) + "s";
       <img src="${item.image}" alt="${item.title}">
       <div class="card-title">${item.title}</div>
     `;
-    card.onclick = () => openModal(item);
+card.onclick = () => {
+  window.location.href = `prompt.html?id=${item.id}`;
+}
+    
     gallery.appendChild(card);
   });
 }
